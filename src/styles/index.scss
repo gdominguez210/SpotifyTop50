@@ -1,0 +1,43 @@
+.barchart-container {
+  min-width: 700px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+text {
+  font-size: 1.5rem;
+}
+
+body {
+  margin: 0px;
+  font-family: "Teko", sans-serif;
+  font-size: 16px;
+}
+div#app {
+  display: flex;
+}
+
+section.artists ul li {
+  list-style-type: none;
+  font-size: 2em;
+  padding: 10px;
+}
+section.artists {
+  display: flex;
+}
+
+section.artists {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+
+section.artists ul:nth-child(1) {
+  flex: 1;
+}
+section.artists ul:nth-child(2) {
+  flex: 2;
+}

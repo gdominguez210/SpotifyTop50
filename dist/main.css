@@ -1,0 +1,40 @@
+.barchart-container {
+  min-width: 700px;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  box-sizing: border-box; }
+
+text {
+  font-size: 1.5rem; }
+
+body {
+  margin: 0px;
+  font-family: "Teko", sans-serif;
+  font-size: 16px; }
+
+div#app {
+  display: flex; }
+
+section.artists ul li {
+  list-style-type: none;
+  font-size: 2em;
+  padding: 10px; }
+
+section.artists {
+  display: flex; }
+
+section.artists {
+  max-height: 400px;
+  overflow-y: scroll; }
+
+section.artists ul:nth-child(1) {
+  flex: 1; }
+
+section.artists ul:nth-child(2) {
+  flex: 2; }
+
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc3R5bGVzL2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSx5QkFBeUI7O0FBRXpCO0FBQ0Esb0JBQW9COztBQUVwQjtBQUNBO0FBQ0E7QUFDQSxrQkFBa0I7O0FBRWxCO0FBQ0EsZ0JBQWdCOztBQUVoQjtBQUNBO0FBQ0E7QUFDQSxnQkFBZ0I7O0FBRWhCO0FBQ0EsZ0JBQWdCOztBQUVoQjtBQUNBO0FBQ0EscUJBQXFCOztBQUVyQjtBQUNBLFVBQVU7O0FBRVY7QUFDQSxVQUFVIiwiZmlsZSI6Im1haW4uY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmJhcmNoYXJ0LWNvbnRhaW5lciB7XG4gIG1pbi13aWR0aDogNzAwcHg7XG4gIG1pbi1oZWlnaHQ6IDMwMHB4O1xuICBkaXNwbGF5OiBmbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgcGFkZGluZzogMzBweDtcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDsgfVxuXG50ZXh0IHtcbiAgZm9udC1zaXplOiAxLjVyZW07IH1cblxuYm9keSB7XG4gIG1hcmdpbjogMHB4O1xuICBmb250LWZhbWlseTogXCJUZWtvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtc2l6ZTogMTZweDsgfVxuXG5kaXYjYXBwIHtcbiAgZGlzcGxheTogZmxleDsgfVxuXG5zZWN0aW9uLmFydGlzdHMgdWwgbGkge1xuICBsaXN0LXN0eWxlLXR5cGU6IG5vbmU7XG4gIGZvbnQtc2l6ZTogMmVtO1xuICBwYWRkaW5nOiAxMHB4OyB9XG5cbnNlY3Rpb24uYXJ0aXN0cyB7XG4gIGRpc3BsYXk6IGZsZXg7IH1cblxuc2VjdGlvbi5hcnRpc3RzIHtcbiAgbWF4LWhlaWdodDogNDAwcHg7XG4gIG92ZXJmbG93LXk6IHNjcm9sbDsgfVxuXG5zZWN0aW9uLmFydGlzdHMgdWw6bnRoLWNoaWxkKDEpIHtcbiAgZmxleDogMTsgfVxuXG5zZWN0aW9uLmFydGlzdHMgdWw6bnRoLWNoaWxkKDIpIHtcbiAgZmxleDogMjsgfVxuIl0sInNvdXJjZVJvb3QiOiIifQ==*/
