@@ -4,21 +4,22 @@ import { ClientID, ClientSecret } from "../api_keys";
 import SpotifyEndPointHelper from "./scripts/spotify_util";
 import { albumData, topArtists, topArtistsIds } from "./scripts/handle_data";
 import { barChart, list } from "./scripts/graphing";
+import { edgeBundle } from "./scripts/edge_bundle";
 import { generateDOM } from "./scripts/generateDOM";
 document.addEventListener("DOMContentLoaded", () => {
   const app = document.getElementById("app");
   generateDOM(app);
 
-  const tracks_amount = SpotifyEndPointHelper(
-    "https://api.spotify.com/v1/artists/7ENzCHnmJUr20nUjoZ0zZ1/albums",
-    ClientID,
-    ClientSecret
-  )
-    .then(data => albumData(data))
-    .then(data => {
-      const tracks = data.tracks;
-      barChart(tracks);
-    });
+  // const tracks_amount = SpotifyEndPointHelper(
+  //   "https://api.spotify.com/v1/artists/7ENzCHnmJUr20nUjoZ0zZ1/albums",
+  //   ClientID,
+  //   ClientSecret
+  // )
+  //   .then(data => albumData(data))
+  //   .then(data => {
+  //     const tracks = data.tracks;
+  //     barChart(tracks);
+  //   });
   const top_playlist = SpotifyEndPointHelper(
     "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
     ClientID,
@@ -32,93 +33,61 @@ document.addEventListener("DOMContentLoaded", () => {
       const topArtistsandGenres = topArtists(data);
       const artistNames = [];
       const artistGenres = [];
+      const genresObjs = [];
+      const artistObjs = [];
       for (let i = 0; i < topArtistsandGenres.length; i++) {
         for (let key in topArtistsandGenres[i]) {
-          debugger;
           if (key === "name") {
-            artistNames.push(topArtistsandGenres[i][key]);
+            artistObjs.push(topArtistsandGenres[i]);
           } else {
-            artistGenres.push(topArtistsandGenres[i][key].join(", "));
+            topArtistsandGenres[i][key].forEach(genre => {
+              if (artistGenres.indexOf(genre) === -1) {
+                artistGenres.push(genre);
+              }
+            });
           }
         }
       }
-      console.log(artistNames);
-      console.log(artistGenres);
-      debugger;
-      list(artistNames, artistGenres);
+
+      artistGenres.forEach(genre => {
+        genresObjs.push({ name: genre });
+      });
+      // console.log(artistNames);
+      // console.log(artistGenres);
+      // console.log(genresObjs);
+      // console.log(artistObjs);
+      // list(artistNames, artistGenres);
+
+      const topArtistData = genresObjs.concat(artistObjs);
+      // console.log(topArtistData);
+      edgeBundle(topArtistData);
     });
   });
-
-  var data = [
+  const dummyData = [
     {
-      name: "iit.mumbai.pub1",
-      imports: ["iit.chennai.pub3"]
+      name: "rap"
+      // imports: ["pub2"]
     },
     {
-      name: "iit.delhi.pub2",
-      imports: ["iit.mumbai.pub1"]
+      name: "drake",
+      imports: ["rap"]
     },
     {
-      name: "iit.chennai.pub3",
-      imports: ["iit.delhi.pub2"]
+      name: "kendrick lamar",
+      imports: ["rap"]
+    },
+    {
+      name: "wu-tang",
+      imports: ["rap"]
     }
   ];
-  const chart = data => {
-    const root = d3.tree(
-      d3
-        .hierarchy(data)
-        .sort(
-          (a, b) =>
-            a.height - b.height || a.data.name.localeCompare(b.data.name)
-        )
-    );
-
-    const map = new Map(root.leaves().map(d => [id(d), d]));
-
-    const context = DOM.context2d(width, width - 40);
-    context.canvas.style.display = "block";
-    context.canvas.style.maxWidth = "100%";
-    context.canvas.style.margin = "auto";
-    context.translate(width / 2, width / 2);
-    line.context(context);
-
-    for (const leaf of root.leaves()) {
-      context.save();
-      context.rotate(leaf.x - Math.PI / 2);
-      context.translate(leaf.y, 0);
-      if (leaf.x >= Math.PI) {
-        context.textAlign = "right";
-        context.rotate(Math.PI);
-        context.translate(-3, 0);
-      } else {
-        context.textAlign = "left";
-        context.translate(3, 0);
-      }
-      context.fillText(leaf.data.name, 0, 3);
-      context.restore();
-    }
-
-    context.globalCompositeOperation = "multiply";
-    context.strokeStyle = "lightsteelblue";
-    for (const leaf of root.leaves()) {
-      for (const i of leaf.data.imports) {
-        context.beginPath();
-        line(leaf.path(map.get(i)));
-        context.stroke();
-      }
-    }
-
-    return context.canvas;
-  };
-
   // const graph = document.createElement("section");
   // app.appendChild(graph);
   // graph.innerHTML = chart(data);
 
   window.SpotifyEndPointHelper = SpotifyEndPointHelper;
   window.ClientID = ClientID;
-  window.data = data;
-  window.chart = chart;
+  // window.data = data;
   window.ClientSecret = ClientSecret;
   window.d3 = d3;
   window.albumData = albumData;

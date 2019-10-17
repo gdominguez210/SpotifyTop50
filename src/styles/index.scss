@@ -1,24 +1,25 @@
 .barchart-container {
-  min-width: 700px;
-  min-height: 300px;
+  /* min-width: 700px;
+   min-height: 300px;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 30px;
-  box-sizing: border-box;
+  box-sizing: border-box;*/
+  flex: 1;
 }
-
+body {
+  background: rgba(50, 50, 58, 1);
+}
 text {
   font-size: 1.5rem;
 }
 
 body {
   margin: 0px;
-  font-family: "Teko", sans-serif;
+  font-family: "Lato", sans-serif;
+
   font-size: 16px;
-}
-div#app {
-  display: flex;
 }
 
 section.artists ul li {
@@ -28,11 +29,17 @@ section.artists ul li {
 }
 section.artists {
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100vh;
 }
-
+div#app {
+  overflow: hidden;
+  display: flex;
+}
 section.artists {
-  max-height: 400px;
-  overflow-y: scroll;
+  text-align: center;
+  flex: 1;
 }
 
 section.artists ul:nth-child(1) {
@@ -40,4 +47,91 @@ section.artists ul:nth-child(1) {
 }
 section.artists ul:nth-child(2) {
   flex: 2;
+}
+h1 {
+  font-family: "Josefin Sans", sans-serif;
+  text-transform: uppercase;
+  font-size: 4em;
+  color: #f4f4f3;
+  line-height: 1.2em;
+  margin-bottom: 0px;
+  margin-top: 150px;
+}
+section.barchart-container {
+  padding: 50px;
+}
+
+p {
+  color: #f4f4f3;
+}
+.node {
+  font-size: 16px;
+  fill: rgba(244, 244, 243, 0.75);
+  transition: 0.3s all;
+  cursor: pointer;
+}
+
+.node:hover {
+  fill: rgba(244, 244, 243, 1);
+}
+
+.link {
+  stroke: rgba(212, 108, 158, 1);
+  stroke-opacity: 0.2;
+  fill: none;
+  pointer-events: none;
+  transition: 0.3s all;
+}
+
+.node:hover,
+.node--source,
+.node--target {
+  font-weight: 600;
+}
+
+.node--source {
+  fill: #2ca02c;
+}
+
+.node--target {
+  fill: #eb9393;
+}
+
+.link--source,
+.link--target {
+  stroke-opacity: 1;
+  stroke-width: 2px;
+}
+
+.link--source {
+  stroke: #eb9393;
+}
+
+.link--target {
+  stroke: #2ca02c;
+}
+
+div#app {
+  position: relative;
+}
+
+video {
+  position: absolute;
+  top: 0;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: auto;
+  z-index: 0;
+  opacity: 0.2;
+  filter: grayscale(1);
+}
+
+section.barchart-container {
+  z-index: 1;
+}
+
+section.artists {
+  z-index: 1;
 }

@@ -22,6 +22,6 @@ export const topArtists = data =>
   data.artists.map(artist => {
     return {
       name: artist.name,
-      genres: artist.genres
+      imports: artist.genres
     };
   });
