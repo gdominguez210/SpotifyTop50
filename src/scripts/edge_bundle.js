@@ -1,9 +1,19 @@
+import SpotifyEndPointHelper from "./spotify_util";
+import { ClientID, ClientSecret } from "../../api_keys";
+import { barChart, barChart2 } from "./graphing";
+import { albumData, topTracks } from "./handle_data";
+
 export const edgeBundle = data => {
   var diameter = 720,
     radius = diameter / 2,
     innerRadius = radius - 120;
 
-  var cluster = d3.cluster().size([360, innerRadius]);
+  var cluster = d3
+    .cluster()
+    .separation(function(a, b) {
+      return a.parent == b.parent ? 1 : 5;
+    })
+    .size([360, innerRadius]);
 
   var line = d3
     .radialLine()
@@ -18,6 +28,7 @@ export const edgeBundle = data => {
   var svg = d3
     .select(".artists")
     .append("svg")
+    .attr("class", "edge-bundle")
     .attr("width", 860)
     .attr("height", 860)
     .append("g")
@@ -71,8 +82,33 @@ export const edgeBundle = data => {
       return d.data.key;
     })
     .on("mouseover", mouseovered)
-    .on("mouseout", mouseouted);
+    .on("mouseout", mouseouted)
+    .on("click", clicked);
 
+  function clicked(d) {
+    if (d.data.type !== "genre") {
+      let artistsWithIds = JSON.parse(localStorage.getItem("artistsWithIds"));
+      const artistId = artistsWithIds.find(el => {
+        if (el.name === d.data.name) {
+          console.log(el.id);
+          return el.id;
+        }
+      });
+      debugger;
+      const tracks_amount = SpotifyEndPointHelper(
+        `https://api.spotify.com/v1/artists/${artistId.id}/top-tracks?country=US`,
+        ClientID,
+        ClientSecret
+      )
+        .then(data => {
+          return topTracks(data);
+        })
+        .then(data => {
+          debugger;
+          barChart2(data);
+        });
+    }
+  }
   function mouseovered(d) {
     node.each(function(n) {
       n.target = n.source = false;

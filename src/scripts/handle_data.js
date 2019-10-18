@@ -13,6 +13,33 @@ export const albumData = data => {
   return { albums, tracks };
 };
 
+export const topTracks = data => {
+  const tracks = [];
+  const trackList = Object.values(data.tracks);
+  debugger;
+
+  trackList.forEach((item, idx) => {
+    tracks.push({
+      name: item.name,
+      popularity: item.popularity,
+      artist: item.artists[0].name
+    });
+  });
+  console.log(tracks);
+  return tracks;
+};
+
+export const topArtistsWithIds = data => {
+  const output = {};
+  data.tracks.items.forEach((item, idx) => {
+    output[idx] = {
+      id: item.track.artists[0].id,
+      name: item.track.artists[0].name
+    };
+  });
+  return Object.values(output);
+};
+
 export const topArtistsIds = data => {
   const artist_ids = data.tracks.items.map(item => item.track.artists[0].id);
   return artist_ids.join(",");

@@ -2,14 +2,20 @@ import "./styles/index.scss";
 import * as d3 from "d3";
 import { ClientID, ClientSecret } from "../api_keys";
 import SpotifyEndPointHelper from "./scripts/spotify_util";
-import { albumData, topArtists, topArtistsIds } from "./scripts/handle_data";
-import { barChart, list } from "./scripts/graphing";
+import {
+  albumData,
+  topTracks,
+  topArtists,
+  topArtistsIds,
+  topArtistsWithIds
+} from "./scripts/handle_data";
+import { barChart, barChart2 } from "./scripts/graphing";
 import { edgeBundle } from "./scripts/edge_bundle";
 import { generateDOM } from "./scripts/generateDOM";
 document.addEventListener("DOMContentLoaded", () => {
   const app = document.getElementById("app");
   generateDOM(app);
-
+  let artistsWithIds = null;
   // const tracks_amount = SpotifyEndPointHelper(
   //   "https://api.spotify.com/v1/artists/7ENzCHnmJUr20nUjoZ0zZ1/albums",
   //   ClientID,
@@ -25,11 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ClientID,
     ClientSecret
   ).then(data => {
+    artistsWithIds = topArtistsWithIds(data);
+    localStorage.setItem("artistsWithIds", JSON.stringify(artistsWithIds));
     SpotifyEndPointHelper(
       `https://api.spotify.com/v1/artists?ids=${topArtistsIds(data)}`,
       ClientID,
       ClientSecret
     ).then(data => {
+      console.log(data);
       const topArtistsandGenres = topArtists(data);
       const artistNames = [];
       const artistGenres = [];
@@ -50,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       artistGenres.forEach(genre => {
-        genresObjs.push({ name: genre });
+        genresObjs.push({ name: genre, type: "genre" });
       });
       // console.log(artistNames);
       // console.log(artistGenres);
@@ -59,36 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
       // list(artistNames, artistGenres);
 
       const topArtistData = genresObjs.concat(artistObjs);
-      // console.log(topArtistData);
+      //remove loader here
+      const loader = document.getElementById("loader");
+      loader.parentNode.removeChild(loader);
       edgeBundle(topArtistData);
     });
   });
-  const dummyData = [
-    {
-      name: "rap"
-      // imports: ["pub2"]
-    },
-    {
-      name: "drake",
-      imports: ["rap"]
-    },
-    {
-      name: "kendrick lamar",
-      imports: ["rap"]
-    },
-    {
-      name: "wu-tang",
-      imports: ["rap"]
-    }
-  ];
-  // const graph = document.createElement("section");
-  // app.appendChild(graph);
-  // graph.innerHTML = chart(data);
-
   window.SpotifyEndPointHelper = SpotifyEndPointHelper;
   window.ClientID = ClientID;
   // window.data = data;
   window.ClientSecret = ClientSecret;
   window.d3 = d3;
   window.albumData = albumData;
+  window.topTracks = topTracks;
 });
