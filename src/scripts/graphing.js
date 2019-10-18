@@ -104,29 +104,28 @@ export const barChart2 = (data, chart) => {
           {
             label: "Popularity",
             data: values,
-            // backgroundColor: [
-            //   "rgba(207, 129, 183, .5)",
-            //   "rgba(202, 231, 220, .5)",
-            //   "rgba(105, 103, 129, .5)",
-            //   "rgba(244, 250, 248, .5)",
-            //   "rgba(185, 34, 143, .5)"
-            // ],
-
             backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)"
+              "rgba(255, 207, 168, .5)",
+              "rgba(255, 168, 168, .5)",
+              "rgba(209, 138, 178, .5)",
+              "rgba(107, 163, 163, .5)",
+              "rgba(138, 209, 138, .5)"
             ],
+
+            // backgroundColor: [
+            //   "rgba(255, 99, 132, 0.2)",
+            //   "rgba(54, 162, 235, 0.2)",
+            //   "rgba(255, 206, 86, 0.2)",
+            //   "rgba(75, 192, 192, 0.2)",
+            //   "rgba(153, 102, 255, 0.2)",
+            //   "rgba(255, 159, 64, 0.2)"
+            // ],
             borderColor: [
-              "rgba(255, 99, 132, 1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)"
+              "rgba(255, 207, 168, 1)",
+              "rgba(255, 168, 168, 1)",
+              "rgba(209, 138, 178, 1)",
+              "rgba(107, 163, 163, 1)",
+              "rgba(138, 209, 138, 1)"
             ],
             borderWidth: 1
           }
@@ -148,7 +147,7 @@ export const barChart2 = (data, chart) => {
                 color: "rgba(244, 244, 243, 0.05)"
               },
               afterFit: function(scaleInstance) {
-                scaleInstance.width = 250; // sets the width to 100px
+                scaleInstance.width = 150; // sets the width to 100px
               }
             }
           ],

@@ -16,16 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const app = document.getElementById("app");
   generateDOM(app);
   let artistsWithIds = null;
-  // const tracks_amount = SpotifyEndPointHelper(
-  //   "https://api.spotify.com/v1/artists/7ENzCHnmJUr20nUjoZ0zZ1/albums",
-  //   ClientID,
-  //   ClientSecret
-  // )
-  //   .then(data => albumData(data))
-  //   .then(data => {
-  //     const tracks = data.tracks;
-  //     barChart(tracks);
-  //   });
   const top_playlist = SpotifyEndPointHelper(
     "https://api.spotify.com/v1/playlists/37i9dQZEVXbMDoHDwVN2tF",
     ClientID,

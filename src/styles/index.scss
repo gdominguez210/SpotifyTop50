@@ -98,7 +98,8 @@ p {
 
 .node:hover,
 .node--source,
-.node--target {
+.node--target,
+.node--active {
   font-weight: 600;
 }
 
@@ -106,7 +107,8 @@ p {
   fill: rgb(144, 223, 193);
 }
 
-.node--target {
+.node--target,
+.node--active {
   fill: #eb9393;
 }
 
@@ -118,12 +120,14 @@ svg.edge-bundle {
 }
 
 .link--source,
-.link--target {
+.link--target,
+.link--active {
   stroke-opacity: 0.8;
   stroke-width: 2px;
 }
 
-.link--source {
+.link--source,
+.link--active {
   stroke: #eb9393;
 }
 

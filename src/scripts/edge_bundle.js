@@ -83,6 +83,37 @@ export const edgeBundle = data => {
     .on("click", clicked);
 
   function clicked(d) {
+    const active = document.querySelectorAll("active");
+    if (active) {
+      for (let i = 0; i < active.length; i++) {
+        active[i].classList.remove("active");
+      }
+    }
+    debugger;
+    node.each(function(n) {
+      n.target = n.source = false;
+    });
+    debugger;
+    link
+      .classed("link--active", function(l) {
+        if (l.target === d) return (l.source.source = true);
+      })
+      .classed("link-active", function(l) {
+        if (l.source === d) return (l.target.target = true);
+      })
+      .filter(function(l) {
+        return l.target === d || l.source === d;
+      })
+      .raise();
+
+    node
+      .classed("node--active", function(n) {
+        return n.target;
+      })
+      .classed("node--active", function(n) {
+        return n.source;
+      });
+
     if (d.data.type !== "genre") {
       let artistsWithIds = JSON.parse(localStorage.getItem("artistsWithIds"));
       const artistId = artistsWithIds.find(el => {
@@ -102,6 +133,7 @@ export const edgeBundle = data => {
         })
         .then(data => {
           debugger;
+
           barChart2(data);
         });
     }
@@ -133,9 +165,11 @@ export const edgeBundle = data => {
   }
 
   function mouseouted(d) {
+    debugger;
     link.classed("link--target", false).classed("link--source", false);
-
+    debugger;
     node.classed("node--target", false).classed("node--source", false);
+    debugger;
   }
 
   function packageHierarchy(classes) {
