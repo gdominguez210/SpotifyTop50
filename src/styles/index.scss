@@ -119,7 +119,7 @@ svg.edge-bundle {
 
 .link--source,
 .link--target {
-  stroke-opacity: 1;
+  stroke-opacity: 0.8;
   stroke-width: 2px;
 }
 
@@ -155,7 +155,17 @@ section.barchart-container {
 section.artists {
   z-index: 1;
 }
+.test {
+  background: #cf81b7;
 
+  background: #cae7dc;
+
+  background: #696781;
+
+  background: #f4faf8;
+
+  background: #b9228f;
+}
 #loader {
   color: rgba(212, 108, 158, 1);
   font-size: 90px;

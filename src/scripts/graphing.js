@@ -69,6 +69,7 @@ export const barChart = data => {
     .attr("text-anchor", "middle")
     .text("Albums");
 };
+
 export const barChart2 = (data, chart) => {
   const ctx = document.getElementById("chart");
   data = data.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
@@ -77,7 +78,7 @@ export const barChart2 = (data, chart) => {
   let values = [];
   data.forEach(el => {
     let name = el.name;
-    let sliceable = name.indexOf("(");
+    let sliceable = name.indexOf("(") || name.indexOf("-");
     if (sliceable !== -1) {
       name = name.slice(0, sliceable);
     }
@@ -103,6 +104,14 @@ export const barChart2 = (data, chart) => {
           {
             label: "Popularity",
             data: values,
+            // backgroundColor: [
+            //   "rgba(207, 129, 183, .5)",
+            //   "rgba(202, 231, 220, .5)",
+            //   "rgba(105, 103, 129, .5)",
+            //   "rgba(244, 250, 248, .5)",
+            //   "rgba(185, 34, 143, .5)"
+            // ],
+
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -127,9 +136,16 @@ export const barChart2 = (data, chart) => {
         scales: {
           yAxes: [
             {
+              barPercentage: 0.75,
+              fontFamily: "Lato",
               ticks: {
                 beginAtZero: true,
-                suggestedMax: 100
+                suggestedMax: 100,
+                fontFamily: "Lato",
+                fontColor: "rgba(244, 244, 243, 0.4)"
+              },
+              gridLines: {
+                color: "rgba(244, 244, 243, 0.05)"
               },
               afterFit: function(scaleInstance) {
                 scaleInstance.width = 250; // sets the width to 100px
@@ -138,13 +154,22 @@ export const barChart2 = (data, chart) => {
           ],
           xAxes: [
             {
+              barPercentage: 1,
+              fontFamily: "Lato",
               scaleLabel: {
                 display: true,
-                labelString: "Popularity"
+                labelString: "Popularity",
+                fontFamily: "Lato",
+                fontColor: "rgba(244, 244, 243, 0.75)"
+              },
+              gridLines: {
+                color: "rgba(244, 244, 243, 0.05)"
               },
               ticks: {
                 beginAtZero: true,
-                suggestedMax: 100
+                suggestedMax: 100,
+                fontFamily: "Lato",
+                fontColor: "rgba(244, 244, 243, 0.4)"
               }
             }
           ]

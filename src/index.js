@@ -61,14 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
       artistGenres.forEach(genre => {
         genresObjs.push({ name: genre, type: "genre" });
       });
-      // console.log(artistNames);
-      // console.log(artistGenres);
-      // console.log(genresObjs);
-      // console.log(artistObjs);
-      // list(artistNames, artistGenres);
-
       const topArtistData = genresObjs.concat(artistObjs);
-      //remove loader here
       const loader = document.getElementById("loader");
       loader.parentNode.removeChild(loader);
       edgeBundle(topArtistData);

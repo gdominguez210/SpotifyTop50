@@ -40,9 +40,6 @@ export const edgeBundle = data => {
   var link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-  // d3.json(""flare.json"", function(error, classes) {
-  //   if (error) throw error;
-
   var root = packageHierarchy(data).sum(function(d) {
     return d.size;
   });
@@ -141,7 +138,6 @@ export const edgeBundle = data => {
     node.classed("node--target", false).classed("node--source", false);
   }
 
-  // Lazily construct the package hierarchy from class names.
   function packageHierarchy(classes) {
     var map = {};
 
@@ -167,17 +163,14 @@ export const edgeBundle = data => {
     return d3.hierarchy(map[""]);
   }
 
-  // Return a list of imports for the given array of nodes.
   function packageImports(nodes) {
     var map = {},
       imports = [];
 
-    // Compute a map from name to node.
     nodes.forEach(function(d) {
       map[d.data.name] = d;
     });
 
-    // For each import, construct a link from the source to target node.
     nodes.forEach(function(d) {
       if (d.data.imports)
         d.data.imports.forEach(function(i) {
