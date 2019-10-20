@@ -16,7 +16,7 @@ export const albumData = data => {
 export const topTracks = data => {
   const tracks = [];
   const trackList = Object.values(data.tracks);
-  debugger;
+   ;
 
   trackList.forEach((item, idx) => {
     tracks.push({

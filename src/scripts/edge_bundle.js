@@ -89,11 +89,11 @@ export const edgeBundle = data => {
         active[i].classList.remove("active");
       }
     }
-    debugger;
+     ;
     node.each(function(n) {
       n.target = n.source = false;
     });
-    debugger;
+     ;
     link
       .classed("link--active", function(l) {
         if (l.target === d) return (l.source.source = true);
@@ -122,7 +122,7 @@ export const edgeBundle = data => {
           return el.id;
         }
       });
-      debugger;
+       ;
       const tracks_amount = SpotifyEndPointHelper(
         `https://api.spotify.com/v1/artists/${artistId.id}/top-tracks?country=US`,
         ClientID,
@@ -132,7 +132,7 @@ export const edgeBundle = data => {
           return topTracks(data);
         })
         .then(data => {
-          debugger;
+           ;
 
           barChart2(data);
         });
@@ -165,11 +165,11 @@ export const edgeBundle = data => {
   }
 
   function mouseouted(d) {
-    debugger;
+     ;
     link.classed("link--target", false).classed("link--source", false);
-    debugger;
+     ;
     node.classed("node--target", false).classed("node--source", false);
-    debugger;
+     ;
   }
 
   function packageHierarchy(classes) {
@@ -188,7 +188,7 @@ export const edgeBundle = data => {
       }
       return node;
     }
-    debugger;
+     ;
 
     classes.forEach(function(d) {
       find(d.name, d);

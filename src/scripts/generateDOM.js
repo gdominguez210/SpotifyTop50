@@ -18,10 +18,10 @@ export const generateDOM = app => {
   content.appendChild(header);
   content.appendChild(subheader);
   const chart = document.createElement("div");
-  chart.className = "chart";
+  chart.className = "chart-container";
   barCharts.appendChild(content);
   barCharts.appendChild(chart);
-  const canvas = document.createElement("canvas");
-  canvas.setAttribute("id", "chart");
-  chart.appendChild(canvas);
+  // const canvas = document.createElement("canvas");
+  chart.setAttribute("id", "chart");
+  // chart.appendChild(canvas);
 };

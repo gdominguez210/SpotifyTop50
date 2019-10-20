@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import Chart from "chart.js";
 export const barChart = data => {
-  debugger;
+   ;
   const w = 630;
   const y = 350;
   const dataLength = data.length;
@@ -18,7 +18,7 @@ export const barChart = data => {
     .append("svg")
     .attr("width", w)
     .attr("height", y);
-  debugger;
+   ;
   svg
     .selectAll("rect")
     .data(data)
@@ -70,122 +70,130 @@ export const barChart = data => {
     .text("Albums");
 };
 
-export const barChart2 = (data, chart) => {
-  const ctx = document.getElementById("chart");
+export const barChart2 = data => {
+  const chart = document.getElementById("chart");
+  var child = chart.lastElementChild;
+  while (child) {
+    chart.removeChild(child);
+    child = chart.lastElementChild;
+  }
+  const canvas = document.createElement("canvas");
+  canvas.setAttribute("id", "canvas");
+  chart.appendChild(canvas);
   data = data.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
-  debugger;
+   ;
   let labels = [];
   let values = [];
+
   data.forEach(el => {
     let name = el.name;
-    let sliceable = name.indexOf("(") || name.indexOf("-");
+    let sliceable = name.indexOf("(");
+
     if (sliceable !== -1) {
       name = name.slice(0, sliceable);
     }
+    // sliceable = name.indexOf("-");
+    // if (sliceable !== -1) {
+    //   name = name.slice(0, sliceable);
+    // }
+
     labels.push(name);
     values.push(el.popularity);
   });
-  debugger;
+   ;
 
-  values = values.slice(0, 6);
+  values = values.slice(0, 5);
   labels = labels.slice(0, 5);
-  debugger;
-  if (chart) {
-    debugger;
-    chart.data.labels = labels;
-    chart.datasets.data = values;
-  } else {
-    debugger;
-    chart = new Chart(ctx, {
-      type: "horizontalBar",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Popularity",
-            data: values,
-            backgroundColor: [
-              "rgba(255, 207, 168, .5)",
-              "rgba(255, 168, 168, .5)",
-              "rgba(209, 138, 178, .5)",
-              "rgba(107, 163, 163, .5)",
-              "rgba(138, 209, 138, .5)"
-            ],
+   ;
+  new Chart(canvas, {
+    type: "horizontalBar",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "Popularity",
+          data: values,
+          backgroundColor: [
+            "rgba(255, 207, 168, .5)",
+            "rgba(255, 168, 168, .5)",
+            "rgba(209, 138, 178, .5)",
+            "rgba(107, 163, 163, .5)",
+            "rgba(138, 209, 138, .5)"
+          ],
 
-            // backgroundColor: [
-            //   "rgba(255, 99, 132, 0.2)",
-            //   "rgba(54, 162, 235, 0.2)",
-            //   "rgba(255, 206, 86, 0.2)",
-            //   "rgba(75, 192, 192, 0.2)",
-            //   "rgba(153, 102, 255, 0.2)",
-            //   "rgba(255, 159, 64, 0.2)"
-            // ],
-            borderColor: [
-              "rgba(255, 207, 168, 1)",
-              "rgba(255, 168, 168, 1)",
-              "rgba(209, 138, 178, 1)",
-              "rgba(107, 163, 163, 1)",
-              "rgba(138, 209, 138, 1)"
-            ],
-            borderWidth: 1
+          // backgroundColor: [
+          //   "rgba(255, 99, 132, 0.2)",
+          //   "rgba(54, 162, 235, 0.2)",
+          //   "rgba(255, 206, 86, 0.2)",
+          //   "rgba(75, 192, 192, 0.2)",
+          //   "rgba(153, 102, 255, 0.2)",
+          //   "rgba(255, 159, 64, 0.2)"
+          // ],
+          borderColor: [
+            "rgba(255, 207, 168, 1)",
+            "rgba(255, 168, 168, 1)",
+            "rgba(209, 138, 178, 1)",
+            "rgba(107, 163, 163, 1)",
+            "rgba(138, 209, 138, 1)"
+          ],
+          borderWidth: 1
+        }
+      ]
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            barPercentage: 0.75,
+            fontFamily: "Lato",
+            ticks: {
+              beginAtZero: true,
+              suggestedMax: 100,
+              fontFamily: "Lato",
+              fontColor: "rgba(244, 244, 243, 0.4)"
+            },
+            gridLines: {
+              color: "rgba(244, 244, 243, 0.05)"
+            },
+            afterFit: function(scaleInstance) {
+              scaleInstance.width = 150; // sets the width to 100px
+            }
+          }
+        ],
+        xAxes: [
+          {
+            barPercentage: 1,
+            fontFamily: "Lato",
+            scaleLabel: {
+              display: true,
+              labelString: "Popularity",
+              fontFamily: "Lato",
+              fontColor: "rgba(244, 244, 243, 0.75)"
+            },
+            gridLines: {
+              color: "rgba(244, 244, 243, 0.05)"
+            },
+            ticks: {
+              beginAtZero: true,
+              suggestedMax: 100,
+              fontFamily: "Lato",
+              fontColor: "rgba(244, 244, 243, 0.4)"
+            }
           }
         ]
       },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              barPercentage: 0.75,
-              fontFamily: "Lato",
-              ticks: {
-                beginAtZero: true,
-                suggestedMax: 100,
-                fontFamily: "Lato",
-                fontColor: "rgba(244, 244, 243, 0.4)"
-              },
-              gridLines: {
-                color: "rgba(244, 244, 243, 0.05)"
-              },
-              afterFit: function(scaleInstance) {
-                scaleInstance.width = 150; // sets the width to 100px
-              }
-            }
-          ],
-          xAxes: [
-            {
-              barPercentage: 1,
-              fontFamily: "Lato",
-              scaleLabel: {
-                display: true,
-                labelString: "Popularity",
-                fontFamily: "Lato",
-                fontColor: "rgba(244, 244, 243, 0.75)"
-              },
-              gridLines: {
-                color: "rgba(244, 244, 243, 0.05)"
-              },
-              ticks: {
-                beginAtZero: true,
-                suggestedMax: 100,
-                fontFamily: "Lato",
-                fontColor: "rgba(244, 244, 243, 0.4)"
-              }
-            }
-          ]
-        },
-        title: {
-          display: true,
-          text: `Top Tracks for ${data[0].artist}`,
-          fontSize: "24",
-          fontFamily: "Lato",
-          fontColor: "rgba(244, 244, 243, 0.75)"
-        },
-        legend: {
-          display: false
-        }
+      title: {
+        display: true,
+        text: `Top Tracks for ${data[0].artist}`,
+        fontSize: "24",
+        fontFamily: "Lato",
+        fontColor: "rgba(244, 244, 243, 0.75)"
+      },
+      legend: {
+        display: false
       }
-    });
-  }
+    }
+  });
 
   return chart;
 };

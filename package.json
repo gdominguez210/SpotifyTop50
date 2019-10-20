@@ -34,7 +34,10 @@
     "webpack-dev-server": "^3.8.2",
     "webpack-merge": "^4.2.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "image-webpack-loader": "^6.0.0",
+    "resolve-url-loader": "^3.1.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gdominguez210/Top-Artists-And-Corresponding-Genre.git"
