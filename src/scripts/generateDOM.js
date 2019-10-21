@@ -6,7 +6,7 @@ export const generateDOM = app => {
   const content = document.createElement("div");
   content.className = "content";
   const header = document.createElement("h1");
-  header.innerHTML = "Spotify Top 50 Artist Data Visualization";
+  header.innerHTML = "Spotify Top 50 <br/> Artist Data Visualization";
   const subheader = document.createElement("p");
   subheader.innerHTML =
     "Hover over any element in the chart to see the relationship between artist and genre. <br/> Click on any artist to see a breakdown of their top tracks.";

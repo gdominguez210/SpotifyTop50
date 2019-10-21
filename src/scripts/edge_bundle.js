@@ -2,7 +2,7 @@ import SpotifyEndPointHelper from "./spotify_util";
 import { ClientID, ClientSecret } from "../../api_keys";
 import { barChart, barChart2 } from "./graphing";
 import { albumData, topTracks } from "./handle_data";
-
+import * as d3 from "d3";
 export const edgeBundle = data => {
   let diameter = 720,
     radius = diameter / 2,
