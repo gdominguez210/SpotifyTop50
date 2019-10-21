@@ -1,7 +1,6 @@
 import * as d3 from "d3";
 import Chart from "chart.js";
 export const barChart = data => {
-   ;
   const w = 630;
   const y = 350;
   const dataLength = data.length;
@@ -18,7 +17,6 @@ export const barChart = data => {
     .append("svg")
     .attr("width", w)
     .attr("height", y);
-   ;
   svg
     .selectAll("rect")
     .data(data)
@@ -81,7 +79,6 @@ export const barChart2 = data => {
   canvas.setAttribute("id", "canvas");
   chart.appendChild(canvas);
   data = data.sort((a, b) => (a.popularity < b.popularity ? 1 : -1));
-   ;
   let labels = [];
   let values = [];
 
@@ -92,19 +89,12 @@ export const barChart2 = data => {
     if (sliceable !== -1) {
       name = name.slice(0, sliceable);
     }
-    // sliceable = name.indexOf("-");
-    // if (sliceable !== -1) {
-    //   name = name.slice(0, sliceable);
-    // }
 
     labels.push(name);
     values.push(el.popularity);
   });
-   ;
-
   values = values.slice(0, 5);
   labels = labels.slice(0, 5);
-   ;
   new Chart(canvas, {
     type: "horizontalBar",
     data: {
@@ -120,15 +110,6 @@ export const barChart2 = data => {
             "rgba(107, 163, 163, .5)",
             "rgba(138, 209, 138, .5)"
           ],
-
-          // backgroundColor: [
-          //   "rgba(255, 99, 132, 0.2)",
-          //   "rgba(54, 162, 235, 0.2)",
-          //   "rgba(255, 206, 86, 0.2)",
-          //   "rgba(75, 192, 192, 0.2)",
-          //   "rgba(153, 102, 255, 0.2)",
-          //   "rgba(255, 159, 64, 0.2)"
-          // ],
           borderColor: [
             "rgba(255, 207, 168, 1)",
             "rgba(255, 168, 168, 1)",
@@ -156,7 +137,7 @@ export const barChart2 = data => {
               color: "rgba(244, 244, 243, 0.05)"
             },
             afterFit: function(scaleInstance) {
-              scaleInstance.width = 150; // sets the width to 100px
+              scaleInstance.width = 150;
             }
           }
         ],

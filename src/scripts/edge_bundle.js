@@ -4,18 +4,18 @@ import { barChart, barChart2 } from "./graphing";
 import { albumData, topTracks } from "./handle_data";
 
 export const edgeBundle = data => {
-  var diameter = 720,
+  let diameter = 720,
     radius = diameter / 2,
     innerRadius = radius - 120;
 
-  var cluster = d3
+  let cluster = d3
     .cluster()
     .separation(function(a, b) {
       return a.parent == b.parent ? 1 : 5;
     })
     .size([360, innerRadius]);
 
-  var line = d3
+  let line = d3
     .radialLine()
     .curve(d3.curveBundle.beta(0.85))
     .radius(function(d) {
@@ -25,7 +25,7 @@ export const edgeBundle = data => {
       return (d.x / 180) * Math.PI;
     });
 
-  var svg = d3
+  let svg = d3
     .select(".artists")
     .append("svg")
     .attr("class", "edge-bundle")
@@ -37,10 +37,10 @@ export const edgeBundle = data => {
       "translate(" + (radius + 70) + "," + (radius + 70) + ")"
     );
 
-  var link = svg.append("g").selectAll(".link"),
+  let link = svg.append("g").selectAll(".link"),
     node = svg.append("g").selectAll(".node");
 
-  var root = packageHierarchy(data).sum(function(d) {
+  let root = packageHierarchy(data).sum(function(d) {
     return d.size;
   });
 
@@ -89,11 +89,9 @@ export const edgeBundle = data => {
         active[i].classList.remove("active");
       }
     }
-     ;
     node.each(function(n) {
       n.target = n.source = false;
     });
-     ;
     link
       .classed("link--active", function(l) {
         if (l.target === d) return (l.source.source = true);
@@ -122,7 +120,6 @@ export const edgeBundle = data => {
           return el.id;
         }
       });
-       ;
       const tracks_amount = SpotifyEndPointHelper(
         `https://api.spotify.com/v1/artists/${artistId.id}/top-tracks?country=US`,
         ClientID,
@@ -132,8 +129,6 @@ export const edgeBundle = data => {
           return topTracks(data);
         })
         .then(data => {
-           ;
-
           barChart2(data);
         });
     }
@@ -165,18 +160,15 @@ export const edgeBundle = data => {
   }
 
   function mouseouted(d) {
-     ;
     link.classed("link--target", false).classed("link--source", false);
-     ;
     node.classed("node--target", false).classed("node--source", false);
-     ;
   }
 
   function packageHierarchy(classes) {
-    var map = {};
+    let map = {};
 
     function find(name, data) {
-      var node = map[name],
+      let node = map[name],
         i;
       if (!node) {
         node = map[name] = data || { name: name, children: [] };
@@ -188,8 +180,6 @@ export const edgeBundle = data => {
       }
       return node;
     }
-     ;
-
     classes.forEach(function(d) {
       find(d.name, d);
     });
@@ -198,7 +188,7 @@ export const edgeBundle = data => {
   }
 
   function packageImports(nodes) {
-    var map = {},
+    let map = {},
       imports = [];
 
     nodes.forEach(function(d) {

@@ -21,7 +21,5 @@ export const generateDOM = app => {
   chart.className = "chart-container";
   barCharts.appendChild(content);
   barCharts.appendChild(chart);
-  // const canvas = document.createElement("canvas");
   chart.setAttribute("id", "chart");
-  // chart.appendChild(canvas);
 };

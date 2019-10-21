@@ -57,11 +57,4 @@ document.addEventListener("DOMContentLoaded", () => {
       edgeBundle(topArtistData);
     });
   });
-  window.SpotifyEndPointHelper = SpotifyEndPointHelper;
-  window.ClientID = ClientID;
-  // window.data = data;
-  window.ClientSecret = ClientSecret;
-  window.d3 = d3;
-  window.albumData = albumData;
-  window.topTracks = topTracks;
 });
