@@ -116,7 +116,7 @@ export const edgeBundle = data => {
       let artistsWithIds = JSON.parse(localStorage.getItem("artistsWithIds"));
       const artistId = artistsWithIds.find(el => {
         if (el.name === d.data.name) {
-          console.log(el.id);
+          el.id;
           return el.id;
         }
       });

@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ClientID,
       ClientSecret
     ).then(data => {
-      console.log(data);
+      data;
       const topArtistsandGenres = topArtists(data);
       const artistNames = [];
       const artistGenres = [];

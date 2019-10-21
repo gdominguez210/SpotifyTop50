@@ -8,16 +8,14 @@ export const albumData = data => {
     albums[idx]["total_tracks"] = item.total_tracks;
     tracks.push(item.total_tracks);
   });
-  console.log(albums);
-  console.log(tracks);
+  albums;
+  tracks;
   return { albums, tracks };
 };
 
 export const topTracks = data => {
   const tracks = [];
   const trackList = Object.values(data.tracks);
-   ;
-
   trackList.forEach((item, idx) => {
     tracks.push({
       name: item.name,
@@ -25,7 +23,7 @@ export const topTracks = data => {
       artist: item.artists[0].name
     });
   });
-  console.log(tracks);
+  tracks;
   return tracks;
 };
 
