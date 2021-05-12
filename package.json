@@ -18,7 +18,7 @@
     "autoprefixer": "^9.6.5",
     "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
-    "chart.js": "^2.8.0",
+    "chart.js": "^2.9.4",
     "css-loader": "^3.2.0",
     "d3": "^5.12.0",
     "d3-hierarchy": "^1.1.8",
